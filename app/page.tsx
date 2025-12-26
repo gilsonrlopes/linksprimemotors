@@ -182,7 +182,8 @@ export default function PrimeMotorsBio() {
           background: rgba(18, 18, 20, 0.95);
           border-radius: 23px;
           z-index: 1;
-          min-height: 220px;
+          /* AJUSTADO: Altura reduzida para 260px (menor vertical) */
+          min-height: 260px;
           overflow: hidden;
         }
 
@@ -257,23 +258,26 @@ export default function PrimeMotorsBio() {
           </div>
         </header>
 
-        {/* ESPAÇADOR */}
-        <div className="pt-[290px]"></div>
+        {/* ESPAÇADOR: Aumentado para 245px para garantir espaço extra no topo */}
+        <div className="pt-[245px]"></div>
 
         {/* Cards Empilhados */}
-        <div className="px-5 pb-48 flex-grow"> 
+        <div className="px-5 pb-0 flex-grow"> 
           {cards.map((card, index) => (
             <div 
               key={card.id}
               className="sticky transition-all duration-500"
               style={{
-                top: `${280 + (index * 10)}px`,
+                // AJUSTE: Top aumentado para 215px (mais baixo ainda)
+                top: `${215 + (index * 5)}px`,
                 zIndex: index + 10,
-                marginBottom: '20px' 
+                // Margem 0px para manter o footer perto
+                marginBottom: '0px' 
               }}
             >
               <div className="gold-border-mask group cursor-pointer shadow-2xl">
-                <div className="inner-content p-6 relative flex flex-col justify-between min-h-[200px]">
+                {/* min-height ajustado via classe CSS para 260px */}
+                <div className="inner-content p-6 relative flex flex-col justify-between">
                   
                   {/* Imagem de Fundo */}
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -297,25 +301,25 @@ export default function PrimeMotorsBio() {
                   </div>
 
                   {/* Textos */}
-                  <div className="relative z-10 mt-auto mb-6">
-                    <h2 className="text-lg font-bold text-white mb-2 tracking-wide drop-shadow-md">
+                  <div className="relative z-10 mt-auto mb-8">
+                    <h2 className="text-xl font-bold text-white mb-2 tracking-wide drop-shadow-md">
                       {card.title}
                     </h2>
-                    <p className="text-zinc-300 text-xs leading-relaxed font-light line-clamp-2 group-hover:text-white transition-colors">
+                    <p className="text-zinc-300 text-xs leading-relaxed font-light group-hover:text-white transition-colors">
                       {card.subtitle}
                     </p>
                   </div>
                   
-                  {/* Botão */}
+                  {/* Botão: Branco -> Degradê Suave Verde/Vermelho */}
                   <a 
                     href={card.link}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => trackClick(card.title, 'card')}
-                    className="relative z-10 w-full bg-zinc-50 border border-zinc-200 text-zinc-900 hover:text-black hover:border-amber-200 hover:bg-gradient-to-r hover:from-yellow-100 hover:via-yellow-300 hover:to-yellow-100 transition-all duration-500 py-3 px-5 rounded-lg font-bold text-[10px] uppercase tracking-[0.15em] flex items-center justify-between group/btn shadow-md hover:shadow-[0_0_25px_rgba(253,224,71,0.4)]"
+                    className="relative z-10 w-full bg-zinc-50 border border-zinc-200 text-zinc-900 hover:text-black hover:border-zinc-300 hover:bg-gradient-to-r hover:from-emerald-100 hover:via-zinc-50 hover:to-red-100 transition-all duration-500 py-3.5 px-6 rounded-xl font-bold text-xs uppercase tracking-[0.15em] flex items-center justify-between group/btn shadow-md hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]"
                   >
                     <span>{card.button}</span>
-                    <ArrowRight size={14} className="text-zinc-600 group-hover/btn:text-black group-hover/btn:translate-x-1 transition-all" />
+                    <ArrowRight size={16} className="text-zinc-600 group-hover/btn:text-black group-hover/btn:translate-x-1 transition-all" />
                   </a>
 
                 </div>
@@ -324,8 +328,8 @@ export default function PrimeMotorsBio() {
           ))}
         </div>
 
-        {/* Footer Social */}
-        <div className="px-6 pb-12 pt-0 relative z-50 bg-gradient-to-t from-black via-black to-transparent">
+        {/* Footer Social - Fundo Preto Sólido */}
+        <div className="px-6 pb-12 pt-2 relative z-50 bg-black">
           <div className="flex justify-center gap-4 flex-wrap mb-8">
             <a href={`https://wa.me/${whatsappNumber}`} className="social-btn group">
               <div className="w-12 h-12 bg-zinc-900 rounded-full border border-zinc-700 flex items-center justify-center text-zinc-200 group-hover:text-emerald-400 group-hover:border-emerald-500/50 transition-all shadow-lg">
@@ -348,11 +352,11 @@ export default function PrimeMotorsBio() {
               </div>
             </a>
           </div>
-          <div className="text-center opacity-40 hover:opacity-100 transition-opacity duration-500">
-            <p className="text-[9px] uppercase tracking-[0.3em] mb-2 text-zinc-500">
-              © Prime Motors 2025
+          <div className="text-center opacity-80 hover:opacity-100 transition-opacity duration-500">
+            <p className="text-[9px] uppercase tracking-[0.3em] mb-2 text-white font-bold">
+              © Prime Motors 2026
             </p>
-            <div className="h-0.5 w-8 bg-zinc-800 mx-auto rounded-full"></div>
+            <div className="h-0.5 w-8 bg-zinc-700 mx-auto rounded-full"></div>
           </div>
         </div>
 
