@@ -28,7 +28,6 @@ export default function PrimeMotorsBio() {
     }
   }, []);
 
-  // CORREÇÃO DO ERRO AQUI: Adicionei ": string" para satisfazer o TypeScript
   const trackClick = (linkName: string, localDoBotao: string = 'web') => {
     console.log(`[Tracking] Clique: ${linkName} | Local: ${localDoBotao}`);
   };
@@ -194,15 +193,17 @@ export default function PrimeMotorsBio() {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          opacity: 0.2;
+          opacity: 0.35; /* Opacidade base aumentada para ver a imagem */
           z-index: 0;
           transition: all 0.7s ease;
-          filter: grayscale(100%) contrast(120%);
+          /* REMOVIDO grayscale(100%) - Agora é colorido por padrão */
+          filter: grayscale(0%) contrast(110%);
         }
 
         .gold-border-mask:hover .card-bg-image {
-          opacity: 0.35;
+          opacity: 0.45; /* Fica um pouco mais brilhante no hover */
           transform: scale(1.05);
+          /* Mantém o filtro colorido */
           filter: grayscale(0%) contrast(110%);
         }
 
@@ -258,8 +259,8 @@ export default function PrimeMotorsBio() {
           </div>
         </header>
 
-        {/* ESPAÇADOR: Aumentado para 245px para garantir espaço extra no topo */}
-        <div className="pt-[245px]"></div>
+        {/* ESPAÇADOR: Ajustado para 210px (Equilíbrio entre cortar e ficar longe) */}
+        <div className="pt-[210px]"></div>
 
         {/* Cards Empilhados */}
         <div className="px-5 pb-0 flex-grow"> 
@@ -268,11 +269,11 @@ export default function PrimeMotorsBio() {
               key={card.id}
               className="sticky transition-all duration-500"
               style={{
-                // AJUSTE: Top aumentado para 215px (mais baixo ainda)
-                top: `${215 + (index * 5)}px`,
+                // AJUSTE: Top 180px. Sobe o primeiro card para mais perto do header
+                top: `${180 + (index * 5)}px`,
                 zIndex: index + 10,
                 // Margem 0px para manter o footer perto
-                marginBottom: '0px' 
+                marginBottom: '0px'
               }}
             >
               <div className="gold-border-mask group cursor-pointer shadow-2xl">
