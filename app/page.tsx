@@ -19,7 +19,6 @@ export default function PrimeMotorsBio() {
   const whatsappNumber = "5541999999999"; // Substitua pelo número real
   const instagramUrl = "https://www.instagram.com/"; 
   const facebookUrl = "https://www.facebook.com/";
-  const siteUrl = "https://www.primemotors.com.br";
   // Endereço Atualizado: Petrolina - PE
   const enderecoGoogleMaps = "https://www.google.com/maps/search/?api=1&query=Av.+Nilo+Coelho,+2002+-+Gercino+Coelho,+Petrolina+-+PE,+56306-000";
   
@@ -29,7 +28,8 @@ export default function PrimeMotorsBio() {
     }
   }, []);
 
-  const trackClick = (linkName, localDoBotao = 'web') => {
+  // CORREÇÃO DO ERRO AQUI: Adicionei ": string" para satisfazer o TypeScript
+  const trackClick = (linkName: string, localDoBotao: string = 'web') => {
     console.log(`[Tracking] Clique: ${linkName} | Local: ${localDoBotao}`);
   };
 
@@ -64,7 +64,7 @@ export default function PrimeMotorsBio() {
       iconColor: "text-white", 
       button: "Ver UTVs",
       stat: "Off-Road",
-      image: "/uvt.png", 
+      image: "https://images.unsplash.com/photo-1535050804459-0562e2474f83?w=800&q=80", 
       link: `https://wa.me/${whatsappNumber}?text=Olá, tenho interesse nos UTVs.`
     },
     {
@@ -225,10 +225,7 @@ export default function PrimeMotorsBio() {
 
       <div className="max-w-md mx-auto relative z-10 flex flex-col min-h-screen">
         
-        {/* HEADER FIXO:
-            Ajustei o padding (py-4) para ficar um pouco mais compacto, 
-            ajudando a ganhar espaço na tela para os cards.
-        */}
+        {/* HEADER FIXO */}
         <header className="fixed top-0 left-0 right-0 mx-auto max-w-md z-50 px-6 py-4 flex flex-col items-center text-center bg-black/90 backdrop-blur-xl border-b border-white/5 shadow-2xl transition-all duration-300">
           
           <div className="inline-flex items-center gap-2 bg-zinc-900/80 backdrop-blur-md px-4 py-1.5 rounded-full border border-zinc-800 mb-3 shadow-2xl animate-fade-in-down">
@@ -242,6 +239,7 @@ export default function PrimeMotorsBio() {
           {/* LOGO */}
           <div className="relative mb-3 w-full max-w-[180px] flex justify-center">
              <div className="absolute inset-0 bg-amber-500/10 blur-[40px] rounded-full opacity-50"></div>
+             {/* eslint-disable-next-line @next/next/no-img-element */}
              <img 
                src="/LogoTransparente.png" 
                alt="Prime Motors" 
@@ -259,7 +257,7 @@ export default function PrimeMotorsBio() {
           </div>
         </header>
 
-        {/* ESPAÇADOR: Reduzi para 290px para acompanhar o cabeçalho mais compacto */}
+        {/* ESPAÇADOR */}
         <div className="pt-[290px]"></div>
 
         {/* Cards Empilhados */}
@@ -269,11 +267,6 @@ export default function PrimeMotorsBio() {
               key={card.id}
               className="sticky transition-all duration-500"
               style={{
-                // AJUSTE CRÍTICO:
-                // Base Top: 280px (logo abaixo do header)
-                // Incremento: index * 10 (muito mais apertado, pilha compacta)
-                // Resultado: O último card não será empurrado para o final da tela,
-                // ele ficará empilhado logo acima dos outros, bem no centro da visão.
                 top: `${280 + (index * 10)}px`,
                 zIndex: index + 10,
                 marginBottom: '20px' 
@@ -283,6 +276,7 @@ export default function PrimeMotorsBio() {
                 <div className="inner-content p-6 relative flex flex-col justify-between min-h-[200px]">
                   
                   {/* Imagem de Fundo */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img 
                     src={card.image} 
                     alt={card.title}
